@@ -1,6 +1,9 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { setupSwagger } from './utils/swagger';
+
+// 스웨거 사용하기 : npm install --save @nestjs/swagger swagger-ui-express
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +19,9 @@ async function bootstrap() {
   );
   // options
   // whitelist: true => 아무 데코레이터도 없는 어떠한 프로퍼티의 오브젝트를 거른다
+
+  // 스웨거 초기화
+  setupSwagger(app);
   await app.listen(3000);
 }
 bootstrap();
